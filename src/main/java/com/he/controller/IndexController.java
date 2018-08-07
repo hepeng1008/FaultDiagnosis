@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.he.entity.User;
 import com.he.service.UserService;
+import com.he.utils.Comet;
+import com.he.utils.CometUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,6 +27,9 @@ public class IndexController extends BaseController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	CometUtil cometUtil;
 
 	@RequestMapping("/login")
 	public String login(Model model, @RequestParam("username") String username,
@@ -56,5 +63,32 @@ public class IndexController extends BaseController {
 			e.printStackTrace();
 			return "login";
 		}
+	}
+
+	@RequestMapping("/comet")
+	public String comet(HttpServletRequest request, HttpServletResponse response){
+		User user = new User();
+		user.setId(12);
+		request.setAttribute("user",user);
+		return "comet";
+	}
+
+	@RequestMapping("/SendComet")
+	@ResponseBody
+	public String SendComet(){
+		Comet comet = new Comet();
+		List<Map> list = new ArrayList<Map>();
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("String","String");
+		list.add(map);
+		comet.setUserId("12");//前端到session中的用户id
+
+		comet.setMsgCount(String.valueOf("1"));
+		comet.setMsgData(list);
+
+		cometUtil.pushTo(comet);
+		//cometUtil.pushToAll(comet);
+
+		return "success";
 	}
 }

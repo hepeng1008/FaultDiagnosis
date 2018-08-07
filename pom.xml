@@ -144,6 +144,15 @@
 			<version>2.6</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.sun.grizzly/grizzly-comet -->
+		<dependency>
+			<groupId>comet4j-tomcat7</groupId>
+			<artifactId>test</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/comet4j-tomcat7.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
 	<build>
