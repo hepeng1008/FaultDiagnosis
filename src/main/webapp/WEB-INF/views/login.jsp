@@ -41,12 +41,12 @@
             </div>
             <h3>欢迎使用 H+</h3>
 
-            <form class="m-t" role="form" action="http://www.zi-han.net/theme/hplus/index.html">
+            <form  if="loginForm" class="m-t" role="form" action="login();">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="用户名" required="">
+                    <input type="email" class="form-control" placeholder="用户名" required="true" id="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
+                    <input type="password" class="form-control" placeholder="密码" required="" id="password">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
 
@@ -61,6 +61,19 @@
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </body>
+<script type="text/javascript">
+    function login() {
+        $.post("login", $('#loginForm').serialize(), function(data) {
+            if (data.success) {
+
+                    window.location.href = ${ctx} + "index";
+            } else {
+                    alert(data.msg);
+            }
+        }, "json");
+
+    }
+</script>
 
 
 <!-- Mirrored from www.zi-han.net/theme/hplus/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:23 GMT -->

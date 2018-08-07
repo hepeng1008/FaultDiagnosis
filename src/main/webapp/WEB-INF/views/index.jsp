@@ -1,9 +1,16 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 
 
 <!-- Mirrored from www.zi-han.net/theme/hplus/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:16:41 GMT -->
 <head>
+    <c:set  var="ctx"  value="<%= request.getContextPath() %>" />
+    <c:set  var="js"   value="${ctx}/static/js"/>
+    <c:set  var="css"  value="${ctx}/static/css"/>
+    <c:set  var="img"  value="${ctx}/static/images"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
@@ -18,10 +25,10 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="${css}/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="${css}/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="${css}/animate.min.css" rel="stylesheet">
+    <link href="${css}/style.min862f.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
