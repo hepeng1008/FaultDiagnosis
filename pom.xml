@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.he</groupId>
 	<artifactId>FaultDiagnosis</artifactId>
@@ -145,10 +145,27 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.sun.grizzly/grizzly-comet -->
+
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.5</version>
+		</dependency>
+
 		<dependency>
 			<groupId>comet4j-tomcat7</groupId>
 			<artifactId>test</artifactId>
-			<version>1.0</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/comet4j-tomcat7.jar</systemPath>
 		</dependency>
@@ -157,6 +174,24 @@
 
 	<build>
 			<finalName>FaultDiagnosis</finalName>
+		<plugins><plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<configuration>
+				<webResources>
+					<resource>
+						<directory>${project.basedir}/lib</directory>
+						<targetPath>WEB-INF/lib</targetPath>
+						<filtering>false</filtering>
+						<includes>
+							<include>**/*.jar</include>
+						</includes>
+					</resource>
+				</webResources>
+			</configuration>
+		</plugin></plugins>
+
+
 		<!-- resources-->
 
 		<resources>
@@ -165,5 +200,6 @@
 			</resource>
 		</resources>
 	</build>
+
 
 </project>

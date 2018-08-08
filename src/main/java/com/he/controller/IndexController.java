@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -90,5 +87,47 @@ public class IndexController extends BaseController {
 		//cometUtil.pushToAll(comet);
 
 		return "success";
+	}
+
+	@RequestMapping("/loading")
+	public String loading(HttpServletRequest request, HttpServletResponse response){
+		return "loadingDemo";
+	}
+
+	@RequestMapping("/loadingData")
+	public String loadingData(HttpServletRequest request, HttpServletResponse response){
+		return "loadingData";
+	}
+
+	@RequestMapping("/LoadData")
+	public void LoadData(HttpServletRequest request, HttpServletResponse response){
+		System.out.println(new Date().getTime());
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(new Date().getTime());
+		System.out.println("success");
+		ajaxJsonResponse(response,true,"data");
+	}
+
+
+	@RequestMapping("/LoadListData")
+	@ResponseBody
+	public List<String> LoadListData(HttpServletRequest request, HttpServletResponse response){
+		System.out.println(new Date().getTime());
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(new Date().getTime());
+		System.out.println("success");
+
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("hello");
+		list.add("world");
+		return list;
 	}
 }
